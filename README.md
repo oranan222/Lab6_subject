@@ -2,29 +2,36 @@
 
 ---
 
-# Grade Calculation System (C# OOP)
+classDiagram
 
-## Class Diagram
+%% ===== Abstract Class =====
+class Person {
+    <<abstract>>
+    - name : string
+    + Display()*
+}
 
-Person (Abstract)
-- name
-+ Display()
+%% ===== Student =====
+class Student {
+    - studentId : string
+    - score : double
+    + GetScore() double
+    + GetGrade() string
+    + Display() void
+}
 
-Student : Person
-- studentId
-- score
-+ GetScore()
-+ GetGrade()
-+ Display()
+%% ===== Course =====
+class Course {
+    - courseName : string
+    - courseId : string
+    - students : List~Student~
+    + AddStudent(student) void
+    + ShowStudents() void
+    + ShowMaxMinScore() void
+    + ShowAverageScore() void
+    + GetCourseInfo() string
+}
 
-Subject
-- subjectName
-- subjectId
-- List<Student>
-+ AddStudent()
-+ ShowAllStudents()
-+ ShowMaxMin()
-+ ShowAverage()
-
-Program
-- Main()
+%% ===== Relationships =====
+Person <|-- Student
+Course "1" --> "*" Student
