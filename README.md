@@ -1,7 +1,7 @@
 อรณัญช์ ไกรอ่ำ 683450197-1
 
 ---
-
+```mermaid
 classDiagram
     class Person {
         <<abstract>>
