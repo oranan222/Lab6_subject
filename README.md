@@ -3,35 +3,36 @@
 ---
 
 classDiagram
+    class Person {
+        <<abstract>>
+        #name: string
+        +Person(name: string)
+        +Display()*
+    }
 
-%% ===== Abstract Class =====
-class Person {
-    <<abstract>>
-    - name : string
-    + Display()*
-}
+    class Student {
+        -studentId: string
+        -score: double
+        +Student(name: string, studentId: string, score: double)
+        +GetScore() double
+        +GetGrade() string
+        +Display()
+    }
 
-%% ===== Student =====
-class Student {
-    - studentId : string
-    - score : double
-    + GetScore() double
-    + GetGrade() string
-    + Display() void
-}
+    class Subject {
+        -subjectName: string
+        -subjectId: string
+        -students: List~Student~
+        +Subject(subjectName: string, subjectId: string)
+        +AddStudent(s: Student)
+        +ShowAllStudents()
+        +ShowMaxMin()
+        +ShowAverage()
+    }
 
-%% ===== Course =====
-class Course {
-    - courseName : string
-    - courseId : string
-    - students : List~Student~
-    + AddStudent(student) void
-    + ShowStudents() void
-    + ShowMaxMinScore() void
-    + ShowAverageScore() void
-    + GetCourseInfo() string
-}
+    class Program {
+        +Main()$
+    }
 
-%% ===== Relationships =====
-Person <|-- Student
-Course "1" --> "*" Student
+    Person <|-- Student
+    Subject o-- Student
